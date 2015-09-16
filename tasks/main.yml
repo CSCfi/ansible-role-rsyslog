@@ -1,0 +1,6 @@
+---
+# tasks file for ansible-role-rsyslog-client
+
+- name: "Copy rsyslog config"
+  template: src=central_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
+  notify: Restart rsyslog

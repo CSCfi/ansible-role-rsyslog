@@ -1,0 +1,5 @@
+## {{ ansible_managed }}
+## Log some stuff to central log hosts
+authpriv.*                                      @{{ central_log_host }}
+local0.*                                        @{{ central_log_host }}
+*.err                                           @{{ central_log_host }}
