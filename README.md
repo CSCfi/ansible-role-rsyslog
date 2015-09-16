@@ -11,7 +11,14 @@ Requirements
 Role Variables
 --------------
 
-central_log_host: IP.Address.To.Loghost
+For shipping over UDP:
+
+central_log_host: "@Address.To.Loghost"
+
+For shipping over TCP:
+
+central_log_host: "@@Address.To.Loghost"
+
 
 Dependencies
 ------------
