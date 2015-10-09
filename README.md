@@ -12,6 +12,10 @@ ansible-role-rsyslog
 Requirements
 ------------
 
+The listener conditional syntax is rsyslog7 specific. It uses "stop" instead of &~
+
+It is possible to install rsyslog7 on EL6, but it's not there by default.
+
 Role Variables
 --------------
 
