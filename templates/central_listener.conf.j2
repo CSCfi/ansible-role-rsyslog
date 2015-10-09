@@ -11,7 +11,7 @@ $UDPServerRun 514
 $ModLoad imtcp
 $InputTCPServerRun 514
 
-$Template GENERALTEMPLATE,"/var/log/remote/servers/%hostname%.log"
+$Template GENERALTEMPLATE,"{{ central_logs_directory }}/%hostname%.log"
 $template LogFmt,"%timereported:::date-rfc3339% %hostname% %syslogseverity-text% %syslogtag% %msg:::drop-last-lf%\n"
 
 if $fromhost-ip startswith '10.' then ?GENERALTEMPLATE;LogFmt

@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-{{ central_log_directory }}/*.log {
+{{ central_logs_directory }}/*.log {
     daily
     rotate {{ central_logs_retention_days }}
     compress
