@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+
+{{ central_log_directory }}/*.log {
+    daily
+    rotate {{ central_logs_retention_days }}
+    compress
+    delaycompress
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
+    endscript
+}
