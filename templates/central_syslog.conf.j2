@@ -1,5 +1,26 @@
 ## {{ ansible_managed }}
+{% if not central_log_listener %}
 ## Log some stuff to central log hosts. TCP/UDP is controlled by hostname.
 authpriv.*                                      {{ central_log_host }}
 local0.*                                        {{ central_log_host }}
 *.err                                           {{ central_log_host }}
+# {{ ansible_managed }}
+
+$umask 0000
+$FileCreateMode 0644
+$FileGroup admin
+{% endif %}
+
+{% if central_log_listener %}
+# Provides UDP syslog reception
+$ModLoad imudp
+$UDPServerRun 514
+# Provides TCP syslog reception
+$ModLoad imtcp
+$InputTCPServerRun 514
+
+$Template GENERALTEMPLATE,"{{ central_logs_directory }}/%hostname%.log"
+$template LogFmt,"%timereported:::date-rfc3339% %hostname% %syslogseverity-text% %syslogtag% %msg:::drop-last-lf%\n"
+
+if $fromhost-ip startswith '10.' then ?GENERALTEMPLATE;LogFmt
+{% endif %}

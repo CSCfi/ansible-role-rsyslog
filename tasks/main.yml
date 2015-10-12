@@ -4,7 +4,7 @@
 - name: "Copy rsyslog config for clients that only ship logs"
   template: src=central_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
   notify: Restart rsyslog
-  when: not central_log_listener
+  when: central_log_host != ""
 
 - name: "Create location of remote logs"
   file: "path={{ central_logs_directory }} state=directory owner=root group=root mode=0755"
@@ -14,7 +14,3 @@
   template: src=remote_logrotate.j2 dest=/etc/logrotate.d/remote_logrotate owner=root group=root mode=0644
   when: central_log_listener
 
-- name: "Copy rsyslog config for the central rsyslog host in each cluster"
-  template: src=central_listener.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
-  notify: Restart rsyslog
-  when: central_log_listener
