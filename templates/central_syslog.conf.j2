@@ -4,7 +4,6 @@
 authpriv.*                                      {{ central_log_host }}
 local0.*                                        {{ central_log_host }}
 *.err                                           {{ central_log_host }}
-# {{ ansible_managed }}
 
 $umask 0000
 $FileCreateMode 0644
