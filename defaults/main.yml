@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-role-rsyslog-client
 #
-central_log_host: "10.1.1.1"
+central_log_host: "@10.1.1.1"
 central_log_listener: False
 central_logs_directory: "/var/log/remote/servers"
 central_logs_retention_days: 30
