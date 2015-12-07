@@ -6,9 +6,10 @@ authpriv.*                                      {{ central_log_host }}
 local0.*                                        {{ central_log_host }}
 *.err                                           {{ central_log_host }}
 
-ansible-pull.*                                  {{ central_log_host }}
-kernel.*                                        {{ central_log_host }}
-smartd.*                                        {{ central_log_host }}
+if $programname startswith 'ansible' then {{ central_log_host }}
+if $programname startswith 'smart' then {{ central_log_host }}
+if $programname startswith 'kernel' then {{ central_log_host }}
+
 
 $umask 0000
 $FileCreateMode 0644
