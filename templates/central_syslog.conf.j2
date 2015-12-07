@@ -1,9 +1,14 @@
 ## {{ ansible_managed }}
 {% if not central_log_listener %}
 ## Log some stuff to central log hosts. TCP/UDP is controlled by hostname.
+## @ for UDP and @@ for TCP
 authpriv.*                                      {{ central_log_host }}
 local0.*                                        {{ central_log_host }}
 *.err                                           {{ central_log_host }}
+
+ansible-pull.*                                  {{ central_log_host }}
+kernel.*                                        {{ central_log_host }}
+smartd.*                                        {{ central_log_host }}
 
 $umask 0000
 $FileCreateMode 0644
