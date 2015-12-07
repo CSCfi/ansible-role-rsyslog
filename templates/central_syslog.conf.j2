@@ -6,8 +6,6 @@ authpriv.*                                      {{ central_log_host }}
 local0.*                                        {{ central_log_host }}
 *.err                                           {{ central_log_host }}
 
-if $programname startswith 'ansible' then {{ central_log_host }}
-
 {% for program in central_log_ship_these_programs %}
 if $programname startswith '{{ program }}' then {{ central_log_host }}
 {% endfor %}
