@@ -1,5 +1,8 @@
 ---
 # tasks file for ansible-role-rsyslog-client
+#
+- name: install rsyslog
+  yum: name=rsyslog state=installed
 
 - name: "Copy rsyslog config for clients that only ship logs"
   template: src=central_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
