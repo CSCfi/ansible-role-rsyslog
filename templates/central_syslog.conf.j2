@@ -27,5 +27,8 @@ $InputTCPServerRun 514
 $Template GENERALTEMPLATE,"{{ central_logs_directory }}/%hostname%.log"
 $template LogFmt,"%timereported:::date-rfc3339% %hostname% %syslogseverity-text% %syslogtag% %msg:::drop-last-lf%\n"
 
-if $fromhost-ip startswith '10.' then ?GENERALTEMPLATE;LogFmt
+if $fromhost-ip startswith '10.' then { 
+	?GENERALTEMPLATE;LogFmt
+	stop
+}
 {% endif %}
