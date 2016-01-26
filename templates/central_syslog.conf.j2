@@ -1,13 +1,15 @@
 ## {{ ansible_managed }}
 {% if not central_log_listener %}
+# LogFmt sets a better timestamp
+$template LogFmt,"%timereported:::date-rfc3339% %hostname% %syslogseverity-text% %syslogtag% %msg:::drop-last-lf%\n"
 ## Log some stuff to central log hosts. TCP/UDP is controlled by hostname.
 ## @ for UDP and @@ for TCP
-authpriv.*                                      {{ central_log_host }}
-local0.*                                        {{ central_log_host }}
-*.err                                           {{ central_log_host }}
+authpriv.*                                      {{ central_log_host }};LogFmt
+local0.*                                        {{ central_log_host }};LogFmt
+*.err                                           {{ central_log_host }};LogFmt
 
 {% for program in central_log_ship_these_programs %}
-if $programname startswith '{{ program }}' then {{ central_log_host }}
+if $programname startswith '{{ program }}' then {{ central_log_host }};LogFmt
 {% endfor %}
 
 
