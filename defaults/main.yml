@@ -13,3 +13,4 @@ central_log_ship_these_programs:
  - "ansible"
  - "kernel"
  - "smart"
+ - "lmod"
