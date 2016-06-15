@@ -34,6 +34,10 @@ For listening:
  - central_logs_directory: "/var/log/remote/servers"
  - central_logs_retention_days: 30
 
+For disabling shipping:
+
+ - central_log_shipper: False
+
 Dependencies
 ------------
 
