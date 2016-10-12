@@ -5,6 +5,7 @@ central_log_host: "@10.1.1.1"
 central_log_listener: False
 central_logs_directory: "/var/log/remote/servers"
 central_logs_retention_days: 30
+central_log_maxopenfiles: 100000
 
 # central_log_ship_these_programs is used in a jinja2
 # for loop that creates rsyslog rules like:
