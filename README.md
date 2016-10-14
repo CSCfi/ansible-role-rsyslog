@@ -33,6 +33,9 @@ For listening:
  - central_log_listener: False
  - central_logs_directory: "/var/log/remote/servers"
  - central_logs_retention_days: 30
+ - central_log_by_function: False
+
+Setting log_by_function to True will store logs not in %hostname% but per function instead.
 
 Dependencies
 ------------

@@ -4,15 +4,15 @@
 - name: install rsyslog
   yum: name=rsyslog state=installed
 
-- name: "Copy rsyslog config for clients that only ship logs"
+- name: template rsyslog config
   template: src=central_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
   notify: Restart rsyslog
 
-- name: "Create location of remote logs"
+- name: "Create location of remote logs on the central_log_listener
   file: "path={{ central_logs_directory }} state=directory owner=root group=root mode=0755"
   when: central_log_listener
 
-- name: Add logrotate for remote logs
+- name: Add logrotate for logs on the central_log_listener
   template: src=remote_logrotate.j2 dest=/etc/logrotate.d/remote_logrotate owner=root group=root mode=0644
   when: central_log_listener
 
