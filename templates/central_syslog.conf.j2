@@ -26,11 +26,22 @@ $InputTCPServerRun 514
 
 $MaxOpenFiles {{ central_log_maxopenfiles }}
 
+{% if central_log_by_function %}
+if $fromhost-ip startswith '10.' then {
+	*.info;mail.none;authpriv.none;cron.none {{ central_logs_directory }}/messages;RSYSLOG_FileFormat
+	authpriv.* {{ central_logs_directory }}/secure;RSYSLOG_FileFormat
+	mail.* {{ central_logs_directory }}/maillog;RSYSLOG_FileFormat
+	cron.* {{ central_logs_directory }}/cron;RSYSLOG_FileFormat
+	stop
+}
+
+{% else %}
 $Template GENERALTEMPLATE,"{{ central_logs_directory }}/%hostname%.log"
 $template LogFmt,"%timereported:::date-rfc3339% %hostname% %syslogseverity-text% %syslogtag%%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n"
 
-if $fromhost-ip startswith '10.' then { 
+if $fromhost-ip startswith '10.' then {
 	?GENERALTEMPLATE;LogFmt
 	stop
 }
+{% endif %}
 {% endif %}
