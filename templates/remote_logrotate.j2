@@ -1,6 +1,11 @@
 # {{ ansible_managed }}
 
-{{ central_logs_directory }}/*.log {
+{{ central_logs_directory }}/messages
+{{ central_logs_directory }}/secure
+{{ central_logs_directory }}/cron
+{{ central_logs_directory }}/maillog
+{{ central_logs_directory }}/*.log
+{
     daily
     rotate {{ central_logs_retention_days }}
     compress
