@@ -16,3 +16,4 @@ central_log_ship_these_programs:
  - "kernel"
  - "smart"
  - "lmod"
+ - "slurm"
