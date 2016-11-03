@@ -25,6 +25,11 @@ $ModLoad imtcp
 $InputTCPServerRun 514
 
 $MaxOpenFiles {{ central_log_maxopenfiles }}
+{% if central_log_extra_settings is defined %}
+{% for log_setting in central_log_extra_settings %}
+{{ setting }}
+{% endfor %}
+{% endif %}
 
 {% if central_log_by_function %}
 if $fromhost-ip startswith '10.' then {

@@ -37,6 +37,21 @@ For listening:
 
 Setting log_by_function to True will store logs not in %hostname% but per function instead.
 
+For extra settings:
+<pre>
+central_log_extra_settings:
+ - "$MainMsgQueueType LinkedList"
+ - "$MainMsgQueueHighWatermark 400000"
+ - "$MainMsgQueueHighWatermark 100000"
+ - "$MainMsgQueueDequeueBatchSize 10000"
+ - "$MainMsgQueueSaveOnShutdown on"
+ - "$MainMsgQueueWorkerThreads 8"
+ - "$ActionQueueWorkerThreads 8"
+ - "$ActionQueueSize 1000000"
+ - "$ActionQueueDequeueBatchSize 500000"
+ - "$ActionQueueType LinkedList"
+</pre>
+
 Dependencies
 ------------
 
