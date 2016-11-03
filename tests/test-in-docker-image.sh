@@ -119,7 +119,10 @@ function test_playbook(){
 }
 function extra_tests(){
 
-    ${APACHE_CTL} configtest || (echo "php --version was failed" && exit 100 )
+    echo "TEST: cat /etc/rsyslog.d/central_syslog.conf"
+    cat /etc/rsyslog.d/central_syslog.conf
+
+#    ${APACHE_CTL} configtest || (echo "php --version was failed" && exit 100 )
 }
 
 
@@ -134,7 +137,7 @@ function main(){
     test_playbook_syntax
     test_playbook
     test_playbook_check
-#    extra_tests
+    extra_tests
 
 }
 
