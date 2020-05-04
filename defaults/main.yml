@@ -29,4 +29,12 @@ central_log_ship_these_programs:
 #- "$ActionQueueSize 1000000"
 #- "$ActionQueueDequeueBatchSize 500000"
 #- "$ActionQueueType LinkedList"
-#
+
+# secondary loghost can be defined if setting e.g.
+#secondary_log_host: '@@192.168.1.1:514'
+#secondary_rsyslog_conf_file: 'secondary_log_host.conf'
+#secondary_log_rules:
+#  - "*.debug"
+#secondary_log_extra_settings:
+#  - "$PreserveFQDN on"
+

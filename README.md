@@ -52,6 +52,8 @@ central_log_extra_settings:
  - "$ActionQueueType LinkedList"
 </pre>
 
+There is also option to setup secondary log host for forwarding. See defauls/main.yml for params.
+
 Dependencies
 ------------
 
