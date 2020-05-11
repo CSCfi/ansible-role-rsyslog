@@ -1,0 +1,14 @@
+## {{ ansible_managed }}
+
+{% if secondary_log_extra_settings is defined %}
+{% for log_setting in secondary_log_extra_settings %}
+{{ log_setting }}
+{% endfor %}
+{% endif %}
+
+{% if secondary_log_rules is defined %}
+{% for rule in secondary_log_rules %}
+{{ rule }}          {{ secondary_log_host }};RSYSLOG_ForwardFormat
+{% endfor %}
+{% endif %}
+
