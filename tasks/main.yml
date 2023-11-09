@@ -1,23 +1,46 @@
 ---
 # tasks file for ansible-role-rsyslog-client
 #
-- name: install rsyslog
-  yum: name=rsyslog state=installed
+- name: Install rsyslog
+  ansible.builtin.yum:
+    name: rsyslog
+    state: installed
 
-- name: template rsyslog config
-  template: src=central_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ central_conf_file }} owner=root group=root mode=0644 backup=yes
+- name: Template rsyslog config
+  ansible.builtin.template:
+    src: "central_syslog.conf.j2"
+    dest: "{{ syslog_conf_path }}/{{ central_conf_file }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+    backup: true
   notify: Restart rsyslog
 
-- name: template secondaray rsyslog config
-  template: src=secondary_syslog.conf.j2 dest={{ syslog_conf_path }}/{{ secondary_rsyslog_conf_file }} owner=root group=root mode=0644 backup=no
+- name: Template secondaray rsyslog config
+  ansible.builtin.template:
+    src: "secondary_syslog.conf.j2"
+    dest: "{{ syslog_conf_path }}/{{ secondary_rsyslog_conf_file }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+    backup: false
   notify: Restart rsyslog
   when: secondary_log_host is defined
 
 - name: Create location of remote logs on the central_log_listener
-  file: path={{ central_logs_directory }} state=directory owner=root group=root mode=0755
+  ansible.builtin.file:
+    path: "{{ central_logs_directory }}"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: 0755
   when: central_log_listener|bool
 
 - name: Add logrotate for logs on the central_log_listener
-  template: src=remote_logrotate.j2 dest=/etc/logrotate.d/remote_logrotate owner=root group=root mode=0644
+  ansible.builtin.template:
+    src: "remote_logrotate.j2"
+    dest: "/etc/logrotate.d/remote_logrotate"
+    owner: "root"
+    group: "root"
+    mode: 0644
   when: central_log_listener|bool
-
