@@ -12,7 +12,7 @@
     dest: "{{ syslog_conf_path }}/{{ central_conf_file }}"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: "0644"
     backup: true
   notify: Restart rsyslog
 
@@ -22,7 +22,7 @@
     dest: "{{ syslog_conf_path }}/{{ secondary_rsyslog_conf_file }}"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: "0644"
     backup: false
   notify: Restart rsyslog
   when: secondary_log_host is defined
@@ -33,7 +33,7 @@
     state: directory
     owner: "root"
     group: "root"
-    mode: 0755
+    mode: "0755"
   when: central_log_listener|bool
 
 - name: Add logrotate for logs on the central_log_listener
@@ -42,5 +42,5 @@
     dest: "/etc/logrotate.d/remote_logrotate"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: "0644"
   when: central_log_listener|bool
