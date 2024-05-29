@@ -2,10 +2,9 @@
 ansible-role-rsyslog
 =========
 
- - Assumes rsyslog is installed and configured to include /etc/rsyslog.d/\*.conf
- - Installs a config file into /etc/rsyslog.d 
+ - Assumes /etc/rsyslog.conf is as distributed where it includes /etc/rsyslog.d/\*.conf
+ - Installs a config file into /etc/rsyslog.d/
  - Restarts rsyslog if that file changed.
-
  - If listener is set true then setup UDP and TCP listeners on port 514
  - Create a directory to store logs
  - Configure logrotate to rotate the logs
@@ -21,21 +20,21 @@ Role Variables
 --------------
 
 For shipping over UDP:
-
+<pre>
 central_log_host: "@Address.To.Loghost"
-
+</pre>
 For shipping over TCP:
-
+<pre>
 central_log_host: "@@Address.To.Loghost"
-
+</pre>
 For listening:
-
- - central_log_listener: False
+<pre>
+ - central_log_listener: false
  - central_logs_directory: "/var/log/remote/servers"
  - central_logs_retention_days: 30
- - central_log_by_function: False
-
-Setting log_by_function to True will store logs not in %hostname% but per function instead.
+ - central_log_by_function: false
+</pre>
+Setting log_by_function to true will store logs not in %hostname% but per function instead.
 
 For extra settings:
 <pre>

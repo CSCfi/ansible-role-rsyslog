@@ -1,9 +1,11 @@
 ---
 # tasks file for ansible-role-rsyslog-client
 #
-- name: Install rsyslog
+- name: Install rsyslog and logrotate
   ansible.builtin.yum:
-    name: rsyslog
+    name:
+      - rsyslog
+      - logrotate
     state: installed
 
 - name: Template rsyslog config
