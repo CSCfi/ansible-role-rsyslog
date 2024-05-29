@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/CSCfi/ansible-role-rsyslog.svg)](https://travis-ci.org/CSCfi/ansible-role-rsyslog)
 ansible-role-rsyslog
 =========
 
